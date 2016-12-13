@@ -1,3 +1,5 @@
+import com.sun.glass.ui.SystemClipboard;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -91,7 +93,6 @@ public class WordExercise {
 
         System.out.println();
 
-
         // Using static method so as not to repeat code
         ex7A = upperShortFirstContainsLetter(words, "E");
         System.out.println(ex7A);
@@ -112,6 +113,27 @@ public class WordExercise {
         System.out.println("ex7A result is " + ex7A);
 
         System.out.println();
+
+        String concatUpper = words
+                .stream()
+                .reduce("", (x,y) -> (x + y).toUpperCase());
+        System.out.println(concatUpper);
+
+        System.out.println();
+
+        concatUpper = words
+                .stream()
+                .map(String::toUpperCase)
+                .reduce("", String::concat);
+        System.out.println(concatUpper);
+
+        System.out.println();
+
+        concatUpper = words
+                .stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.joining(","));
+        System.out.println(concatUpper);
     }
 
     static String upperShortFirstContainsLetter(List<String> words, String letter) {
