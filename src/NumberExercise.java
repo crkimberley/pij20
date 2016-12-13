@@ -18,25 +18,25 @@ public class NumberExercise {
 
         System.out.println("\nsquares");
         List<Integer> squares = numbers
-                .stream()
+                .parallelStream()
                 .map(x -> x * x)
                 .collect(Collectors.toList());
         System.out.println(squares);
 
         System.out.println("\npairs");
         List<int[]> pairs = numbers
-                .stream()
+                .parallelStream()
                 .flatMap(x -> numbers2
-                        .stream()
+                        .parallelStream()
                         .map(y -> new int[] {x,y}))
                 .peek(p -> System.out.println(p[0] + "," + p[1]))
                 .collect(Collectors.toList());
 
         System.out.println("\npairs whose sum is divisible by 3");
         pairs = numbers
-                .stream()
+                .parallelStream()
                 .flatMap(x -> numbers2
-                        .stream()
+                        .parallelStream()
                         .filter(y -> (x + y) % 3 == 0)
                         .map(y -> new int[] {x,y}))
                 .peek(p -> System.out.println(p[0] + "," + p[1]))
