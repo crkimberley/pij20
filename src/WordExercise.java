@@ -3,6 +3,8 @@ import com.sun.glass.ui.SystemClipboard;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.Stream;
 
 /**
  * Created by chris on 13/12/2016.
@@ -116,7 +118,7 @@ public class WordExercise {
 
         String concatUpper = words
                 .stream()
-                .reduce("", (x,y) -> (x + y).toUpperCase());
+                .reduce("", (x, y) -> (x + y).toUpperCase());
         System.out.println(concatUpper);
 
         System.out.println();
@@ -134,9 +136,17 @@ public class WordExercise {
                 .map(String::toUpperCase)
                 .collect(Collectors.joining(","));
         System.out.println(concatUpper);
+
+        System.out.println();
+
+        System.out.println(randomNumberList(5));
+
+        System.out.println();
+
+        System.out.println(orderedNumberList(31, 7, 12));
     }
 
-    static String upperShortFirstContainsLetter(List<String> words, String letter) {
+    private static String upperShortFirstContainsLetter(List<String> words, String letter) {
         return words
                 .stream()
                 .map(String::toUpperCase)
@@ -144,5 +154,17 @@ public class WordExercise {
                 .filter(w -> w.contains(letter))
                 .findFirst()
                 .orElse("not found");
+    }
+
+    private static List<Double> randomNumberList(long size) {
+        return Stream.generate(Math::random)
+                .limit(size)
+                .collect(Collectors.toList());
+    }
+
+    private static List<Integer> orderedNumberList(int initialValue, int stepSize, int size) {
+        return Stream.iterate(initialValue, n -> n + stepSize)
+                .limit(size)
+                .collect(Collectors.toList());
     }
 }
