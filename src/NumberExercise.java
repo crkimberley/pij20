@@ -15,6 +15,7 @@ public class NumberExercise {
         List<Integer> numbers = Arrays.asList(1,2,3,4,5);
         List<Integer> numbers2 = Arrays.asList(3,4);
         List<Integer> numbers3 = Arrays.asList(31,23,19,57,41,68);
+        int[] ints3 = {31,23,19,57,41,68};
         List<Double> numbers4 = Arrays.asList(237.517,356.248,4123.1907,876.739);
         System.out.println(numbers);
         System.out.println(numbers2);
@@ -62,6 +63,12 @@ public class NumberExercise {
         sum = numbers3
                 .parallelStream()
                 .collect(Collectors.summingInt(Integer::intValue));
+        System.out.println("sum = " + sum);
+
+        System.out.println("\n");
+        sum = Arrays.stream(ints3)
+                .peek(System.out::println)
+                .sum();
         System.out.println("sum = " + sum);
 
         System.out.println("\n" + numbers4);
